@@ -1,53 +1,57 @@
-import React,{useState} from 'react'
-import TodoForm from './TodoForm'
-import Todo from './Todo'
+import React, { useState } from 'react';
+import TodoForm from './TodoForm';
+import Todo from './Todo';
 
 function TodoList() {
-    const [todos, setTodos] = useState([])
-    
-    //Add Todo 
-    const addTodo = todo => {
-        if (!todo.text || /^\s*$/.test(todo.text)){
-            return
-        }
-        const newTodos = [todo, ...todos]
+  const [todos, setTodos] = useState([]);
 
-        setTodos(newTodos);
+  const addTodo = todo => {
+    if (!todo.text || /^\s*$/.test(todo.text)) {
+      return;
     }
 
-    //Update Todo
-    const updateTodos= (todoId,newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)){
-            return
-        }
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
-    }
-    
-    //Remove Todo
-    const removeTodo = id => {
-        const removeArr = [...todos].filter(todo => todo.id !== id)
+    const newTodos = [todo, ...todos];
 
-        setTodos(removeArr)
+    setTodos(newTodos);
+    console.log(...todos);
+  };
+
+  const updateTodo = (todoId, newValue) => {
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+      return;
     }
 
+    setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
+  };
 
-    const completeTodo = id =>{
-        let updatedTodos = todos.map(todo =>{
-            if (todo.id === id){
-                todo.isComplete = !todo.isComplete;
-            }
-            return todo
-        })
-        setTodos(updatedTodos);
-    }
+  const removeTodo = id => {
+    const removedArr = [...todos].filter(todo => todo.id !== id);
 
-    return (
-      <div>
-        <h1>What's Plan for Today ?</h1>
-        <TodoForm onSubmit={addTodo}/>
-        <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodos={updateTodos}/>
-      </div>
-  )
+    setTodos(removedArr);
+  };
+
+  const completeTodo = id => {
+    let updatedTodos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.isComplete = !todo.isComplete;
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
+
+  return (
+    <>
+      <h1>What's the Plan for Today?</h1>
+      <TodoForm onSubmit={addTodo} />
+      <Todo
+        todos={todos}
+        completeTodo={completeTodo}
+        removeTodo={removeTodo}
+        updateTodo={updateTodo}
+      />
+    </>
+  );
 }
 
-export default TodoList
+export default TodoList;
