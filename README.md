@@ -29,4 +29,7 @@ ToDo List App is a kind of app that generally used to maintain our day-to-day ta
 
 [feat] : new features
 <fix> : fix something, e.g bugs
+
+```
 ref : refactor code
+```
