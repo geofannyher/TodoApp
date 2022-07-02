@@ -24,3 +24,9 @@ ToDo List App is a kind of app that generally used to maintain our day-to-day ta
 - [x] `src/components/Todo.js`
 - [x] `src/components/TodoForm.js`
 - [x] `src\App.css`
+
+# Conventional commits
+
+[feat] : new features
+<fix> : fix something, e.g bugs
+ref : refactor code
